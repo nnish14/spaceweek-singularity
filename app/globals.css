@@ -1,0 +1,188 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 240 25% 5%;
+    --foreground: 240 10% 95%;
+
+    --card: 240 25% 8%;
+    --card-foreground: 240 10% 95%;
+
+    --popover: 240 25% 8%;
+    --popover-foreground: 240 10% 95%;
+
+    --primary: 252 100% 70%;
+    --primary-foreground: 240 10% 95%;
+
+    --secondary: 280 100% 60%;
+    --secondary-foreground: 240 10% 95%;
+
+    --muted: 240 25% 15%;
+    --muted-foreground: 240 10% 70%;
+
+    --accent: 210 100% 50%;
+    --accent-foreground: 240 10% 95%;
+
+    --destructive: 0 100% 50%;
+    --destructive-foreground: 240 10% 95%;
+
+    --border: 240 25% 20%;
+    --input: 240 25% 20%;
+    --ring: 252 100% 70%;
+
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+@layer components {
+  .text-glow {
+    text-shadow: 0 0 10px rgba(107, 102, 255, 0.5), 0 0 20px rgba(107, 102, 255, 0.3);
+  }
+
+  .border-glow {
+    box-shadow: 0 0 5px rgba(107, 102, 255, 0.5), 0 0 10px rgba(107, 102, 255, 0.3);
+  }
+
+  .glassmorphism {
+    @apply bg-opacity-10 backdrop-blur-md border border-white/10 bg-white/5;
+  }
+
+  .star {
+    @apply absolute rounded-full bg-white;
+    box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.4);
+  }
+
+  .parallax {
+    transform: translateZ(0);
+    will-change: transform;
+  }
+}
+
+.stars-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+  z-index: 0;
+}
+
+.timeline-stepper::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+  height: 100%;
+  width: 2px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(107, 102, 255, 0.5),
+    rgba(107, 102, 255, 0.8),
+    rgba(107, 102, 255, 0.5),
+    transparent
+  );
+}
+
+@media (max-width: 768px) {
+  .timeline-stepper::before {
+    left: 20px;
+  }
+}
+
+.event-card {
+  transition: all 0.3s ease;
+}
+
+.event-card:hover {
+  transform: translateY(-5px);
+}
+
+.speaker-card {
+  transition: all 0.3s ease;
+}
+
+.speaker-card:hover {
+  transform: translateY(-5px) scale(1.02);
+}
+
+.gallery-item {
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.gallery-item:hover img {
+  transform: scale(1.05);
+}
+
+.gallery-item img {
+  transition: transform 0.5s ease;
+}
+
+.nav-link {
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(to right, rgba(107, 102, 255, 0.7), rgba(195, 58, 255, 0.7));
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+.nav-link:hover {
+  text-shadow: 0 0 8px rgba(107, 102, 255, 0.8);
+}
+
+.floating-cta {
+  animation: float 6s ease-in-out infinite;
+}
+
+.countdown-item {
+  @apply flex flex-col items-center justify-center p-2 md:p-4 glassmorphism rounded-lg;
+  min-width: 70px;
+}
+
+.form-input {
+  @apply bg-muted border-border rounded-md p-2 w-full focus:outline-none focus:ring-2 focus:ring-space-500 transition-all duration-300;
+}
+
+.form-label {
+  @apply text-sm text-muted-foreground mb-1 block;
+}
+
+.form-submit {
+  @apply bg-space-600 hover:bg-space-500 text-white font-medium py-2 px-4 rounded-md transition-all duration-300 hover:shadow-lg hover:shadow-space-500/20;
+}
+
+.social-icon {
+  @apply text-muted-foreground hover:text-space-400 transition-all duration-300;
+}
+
+.social-icon:hover {
+  filter: drop-shadow(0 0 8px rgba(107, 102, 255, 0.8));
+}
+
